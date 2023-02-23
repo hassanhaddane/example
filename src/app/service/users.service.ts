@@ -8,9 +8,7 @@ import { UserLdap } from '../model/user-ldap';
 })
 export class UsersService {
   // Liste des utilisateurs (mock file => ldap-mock-data.ts)
-  users: UserLdap[] = LDAP_USERS; // ??? TODO : check if 'static' work
-  static users: any;  // ??? à tester 
-
+  static users: UserLdap[] = LDAP_USERS; // ??? TODO : check if 'static' work
 
   addUser(user: UserLdap): Observable<UserLdap> {
     UsersService.users.push(user);
@@ -33,11 +31,11 @@ export class UsersService {
   }
 
   getUsers(): Observable<UserLdap[]> {
-    return of(this.users);
+    return of(UsersService.users);
   }
 
   getUser(login: string): Observable<UserLdap> {
-    return of (this.users.find(user => user.login === login));
+    return of (UsersService.users.find(user => user.login === login));
   }
 
 
